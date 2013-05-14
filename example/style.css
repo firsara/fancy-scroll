@@ -55,6 +55,7 @@ a:hover {
 
 #about {
   position: fixed;
+  z-index: 2;
   top: 20px;
   left: 20px;
   padding: 10px 20px 20px;
