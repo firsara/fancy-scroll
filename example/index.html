@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Fancy-Scroll</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+  .item {
+    -webkit-transition: all 300ms ease;
+       -moz-transition: all 300ms ease;
+            transition: all 300ms ease;
+    
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="about">
+    <h1>Fancy-Scroll</h1>
+    <p>for that fancy scrolling effect <br>you were always looking for</p>
+    <a href="https://github.com/firsara/fancy-scroll">Github</a><br>
+    <a href="http://codepen.io/firsara/pen/hicDg">Codepen</a><br>
+    <br>
+    Created by <a class="about" href="http://fabianirsara.com">Fabian Irsara</a>
+  </div>
+
+  <div id="wrapper">
+    <script>
+    for (var i = 0, _len = 500; i < _len; i++) {
+      var size = Math.random() < .5 ? 'big' : '';
+      var color = ('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6);
+
+      document.write('<div class="item '+size+'"><div class="inner" style="background: #'+color+'"></div></div>');
+    }
+    </script>
+  </div>
+
+  <script type="text/javascript" src="../source/scroller.js"></script>
+  <script>
+  var ready = function(){
+    scroller.scale = 0.1;
+    scroller.check = 50;
+    scroller.move = 200;
+    scroller.render = 2;
+
+    var items = document.querySelectorAll('.item');
+    scroller.setEntries(items);
+    
+    resize();
+  };
+
+  var resize = function(){
+    var containerWidth = document.getElementById('wrapper').offsetWidth;
+    scroller.resize(containerWidth);
+  };
+
+  window.onload = ready;
+  window.addEventListener('resize', resize);
+  </script>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+  <script>
+  var gui = new dat.GUI();
+  gui.add(scroller, 'scale', 0, 1);
+  gui.add(scroller, 'check', 0, 200).step(1);
+  gui.add(scroller, 'move', 0, 1000).step(1);
+  gui.add(scroller, 'render', 1, 20).step(1);
+  </script>
+
+</body>
+</html>
