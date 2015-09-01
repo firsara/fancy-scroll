@@ -10,7 +10,7 @@
     -webkit-transition: all 300ms ease;
        -moz-transition: all 300ms ease;
             transition: all 300ms ease;
-    
+
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
        -moz-transform: translate3d(0, 0, 0);
@@ -42,8 +42,10 @@
     </script>
   </div>
 
-  <script type="text/javascript" src="../source/scroller.js"></script>
+  <script type="text/javascript" src="../source/fancyscroll.js"></script>
   <script>
+  var scroller = new FancyScroll();
+
   var ready = function(){
     scroller.scale = 0.1;
     scroller.check = 50;
@@ -52,14 +54,19 @@
 
     var items = document.querySelectorAll('.item');
     scroller.setEntries(items);
-    
+
     resize();
   };
 
   var resize = function(){
     var containerWidth = document.getElementById('wrapper').offsetWidth;
-    scroller.resize(containerWidth);
+    var containerHeight = window.innerHeight;
+    scroller.resize(containerWidth, containerHeight);
   };
+
+  setTimeout(function(){
+    scroller.destroy();
+  }, 5000);
 
   window.onload = ready;
   window.addEventListener('resize', resize);

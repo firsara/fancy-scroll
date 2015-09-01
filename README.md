@@ -9,9 +9,11 @@ The example just includes a basic setup for the sake of simplicity.
 #Setup
 ### HTML:
 
-    <div id="wrapper">
-      <div class="item">
-        <div class="inner">
+    <div id="wrapper-outer">
+      <div id="wrapper">
+        <div class="item">
+          <div class="inner">
+        </div>
       </div>
     </div>
 
@@ -23,6 +25,8 @@ The example just includes a basic setup for the sake of simplicity.
 
 ### JS:
 
+    var scroller = new FancyScroll();
+
     scroller.scale = 0.1;
     scroller.check = 50;
     scroller.move = 200;
@@ -30,9 +34,14 @@ The example just includes a basic setup for the sake of simplicity.
 
     var items = document.querySelectorAll('.item');
     var containerWidth = document.getElementById('wrapper').offsetWidth;
+    var containerHeight = document.getElementById('wrapper-outer').offsetHeight;
 
     scroller.setEntries(items);
-    scroller.resize(containerWidth);
+    scroller.resize(containerWidth, containerHeight);
+
+    scroller.destroy();
+
+    FancyScroll.destroyAll();
 
 
 
