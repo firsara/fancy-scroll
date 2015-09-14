@@ -188,7 +188,7 @@
           curtop -= obj2.scrollTop;
           obj2 = obj2.parentNode;
         }
-      } while (obj.offsetParent)
+      } while (obj.offsetParent);
     } else if (document.layers) {
       curtop += obj.y;
       curleft += obj.x;
