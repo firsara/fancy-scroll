@@ -205,7 +205,7 @@
       return FancyScroll;
     });
   } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = FancyScroll.attach;
+    module.exports = FancyScroll;
     module.exports.FancyScroll = FancyScroll;
   } else {
     window.FancyScroll = FancyScroll;
