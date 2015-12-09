@@ -155,23 +155,30 @@
 
   // Helper Functions
 
-  var transformStylePrefix = (function(){
-    var prefix = 'transform';
+  var transformStylePrefix = 'transform';
 
-    if (! (prefix in document.body.style)) {
-      var v = ['ms', 'Khtml', 'O', 'Moz', 'Webkit'];
+  var checkTransformStylePrefix = function(){
+    if (document.body && document.body.style) {
+      var prefix = 'transform';
 
-      while(v.length) {
-        var prop = v.pop() + 'Transform';
-        if (prop in document.body.style) {
-          prefix = prop;
+      if (! (prefix in document.body.style)) {
+        var v = ['ms', 'Khtml', 'O', 'Moz', 'Webkit'];
+
+        while(v.length) {
+          var prop = v.pop() + 'Transform';
+          if (prop in document.body.style) {
+            prefix = prop;
+          }
         }
       }
+
+      transformStylePrefix = prefix;
+    } else {
+      setTimeout(checkTransformStylePrefix, 17);
     }
+  };
 
-    return prefix;
-  })();
-
+  checkTransformStylePrefix();
 
   var findPos = function(obj){
     var obj2 = obj;
